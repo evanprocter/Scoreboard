@@ -3,25 +3,52 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    // set up state
+    this.state = {
+      scores: [
+        {id: 1,
+        name: "alice",
+        score: 1001
+      },
+      {
+        id: 2,
+        name: "jeffles",
+        score: 20
+      },
+      { id: 3,
+        name: "stinkface",
+        score: 500
+      }
+      ]
+    }
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>Scoreboard App</h1>
+        {/* this is how you write comments in react */}
+        <div className="score-container">
+          {this._scoresAsCards()}
+        </div>    
       </div>
-    );
+    );  
+  }
+
+
+  _scoresAsCards(){
+    const cards = this.state.scores.map(score => {
+      return (
+        <div>
+          <h2>
+            Name: {score.name} // Score: {score.score}</h2>
+        </div>
+      )
+    });
+    return cards;
   }
 }
 
